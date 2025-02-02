@@ -1,6 +1,7 @@
 <script setup>
 
 import MagnifyingGlass from "@/Components/Icons/MagnifyingGlass.vue";
+import Pagination from "@/Components/Pagination.vue";
 
 defineProps({
     students : {
