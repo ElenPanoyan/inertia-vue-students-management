@@ -1,5 +1,7 @@
 <script setup>
 
+import {router} from "@inertiajs/vue3";
+
 defineProps({
     data : {
         type: Object,
