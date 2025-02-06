@@ -1,8 +1,9 @@
 <script setup>
 
 import MagnifyingGlass from "@/Components/Icons/MagnifyingGlass.vue";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import Pagination from "@/Components/Pagination.vue";
-import {Link} from "@inertiajs/vue3";
+import {Link, Head} from "@inertiajs/vue3";
 
 defineProps({
     students : {
@@ -13,7 +14,7 @@ defineProps({
 </script>
 
 <template>
-    <Head title="Students" />
+    <Head title="Students list" />
 
     <AuthenticatedLayout>
         <template>

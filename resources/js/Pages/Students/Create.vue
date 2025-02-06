@@ -2,6 +2,7 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import {Head, Link, useForm} from "@inertiajs/vue3";
 import {ref, watch} from "vue";
+import InputError from "@/Components/InputError.vue";
 
 defineProps({
     classes: {
@@ -26,10 +27,13 @@ watch(() => form.class_id,
 
 
 const getSections = (classId) => {
- axios.get('/api/sections?class_id=' + classId)
-     .then((response) => {
-        sections.value = response.data;
-     })
+    sections.value = [];
+    if (classId) {
+        axios.get('/api/sections?class_id=' + classId)
+            .then((response) => {
+                sections.value = response.data;
+            })
+    }
 }
 </script>
 
@@ -45,7 +49,7 @@ const getSections = (classId) => {
         <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
             <div class="lg:grid lg:grid-cols-12 lg:gap-x-5">
                 <div class="space-y-6 sm:px-6 lg:px-0 lg:col-span-12">
-                    <form @submit.prevent="submit">
+                    <form @submit.prevent="form.post(route('students.store'))">
                         <div class="shadow sm:rounded-md sm:overflow-hidden">
                             <div class="bg-white py-6 px-4 space-y-6 sm:p-6">
                                 <div>
@@ -76,10 +80,7 @@ const getSections = (classId) => {
                                                     form.errors.name,
                                             }"
                                         />
-                                        <InputError
-                                            class="mt-2"
-                                            :message="form.errors.name"
-                                        />
+                                        <InputError :message="form.errors.name" class="mt-2"></InputError>
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-3">
@@ -99,10 +100,7 @@ const getSections = (classId) => {
                                                     form.errors.email,
                                             }"
                                         />
-                                        <InputError
-                                            class="mt-2"
-                                            :message="form.errors.email"
-                                        />
+                                        <InputError class="mt-2" :message="form.errors.email"></InputError>
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-3">
@@ -131,10 +129,7 @@ const getSections = (classId) => {
                                                 {{ item.name }}
                                             </option>
                                         </select>
-                                        <InputError
-                                            class="mt-2"
-                                            :message="form.errors.class_id"
-                                        />
+                                        <InputError class="mt-2" :message="form.errors.class_id"></InputError>
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-3">
@@ -155,16 +150,14 @@ const getSections = (classId) => {
                                             <option value="">
                                                 Select a Section
                                             </option>
-                                           <option
-                                               v-for="section in sections.data"
-                                               :key="section.id"
-                                               :value="section.id"
-                                           > {{ section.name}}</option>
+                                            <option
+                                                v-for="section in sections.data"
+                                                :key="section.id"
+                                                :value="section.id"
+                                            > {{ section.name }}
+                                            </option>
                                         </select>
-                                        <InputError
-                                            class="mt-2"
-                                            :message="form.errors.section_id"
-                                        />
+                                        <InputError class="mt-2" :message="form.errors.section_id"></InputError>
                                     </div>
                                 </div>
                             </div>

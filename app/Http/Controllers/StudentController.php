@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreStudentRequest;
 use App\Http\Resources\ClassesResource;
 use App\Http\Resources\SectionResource;
 use App\Http\Resources\StudentResource;
@@ -28,5 +29,11 @@ class StudentController extends Controller
             'classes' => $classes,
             'sections' => $sections,
         ]);
+    }
+
+    public function store(StoreStudentRequest $request)
+    {
+         Student::create($request->validated());
+         return redirect()->to('/students');
     }
 }
