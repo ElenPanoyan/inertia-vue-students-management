@@ -3,7 +3,7 @@
 import MagnifyingGlass from "@/Components/Icons/MagnifyingGlass.vue";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import Pagination from "@/Components/Pagination.vue";
-import {Link, Head} from "@inertiajs/vue3";
+import {Link, Head, useForm} from "@inertiajs/vue3";
 
 defineProps({
     students : {
@@ -11,6 +11,12 @@ defineProps({
         required: true
     }
 })
+let form = useForm({});
+const deleteStudent = (studentId) => {
+    if (confirm('Are you sure to delete this student?')) {
+        form.delete(route('students.destroy', studentId))
+    }
+}
 </script>
 
 <template>
@@ -173,23 +179,13 @@ defineProps({
                                             <td
                                                 class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6"
                                             >
-                                                <Link
-                                                    :href="
-                                                            route(
-                                                                'students.edit',
-                                                                student.id
-                                                            )
-                                                        "
+                                                <Link :href="route('students.edit', student.id)"
                                                     class="text-indigo-600 hover:text-indigo-900"
                                                 >
                                                     Edit
                                                 </Link>
                                                 <button
-                                                    @click="
-                                                            deleteStudent(
-                                                                student.id
-                                                            )
-                                                        "
+                                               @click = "deleteStudent(student.id)"
                                                     class="ml-2 text-indigo-600 hover:text-indigo-900"
                                                 >
                                                     Delete
