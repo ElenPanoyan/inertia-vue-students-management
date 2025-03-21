@@ -1,15 +1,12 @@
 <script setup>
 
-import MagnifyingGlass from "@/Components/Icons/MagnifyingGlass.vue";
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import Pagination from "@/Components/Pagination.vue";
-import {Link, Head, useForm} from "@inertiajs/vue3";
+import MagnifyingGlass from "@/Components/Icons/MagnifyingGlass.vue"
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue"
+import Pagination from "@/Components/Pagination.vue"
+import {Link, Head, useForm} from "@inertiajs/vue3"
 
 defineProps({
-    students : {
-        type: Object,
-        required: true
-    }
+    students : Object,
 })
 let form = useForm({});
 const deleteStudent = (studentId) => {

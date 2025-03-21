@@ -1,13 +1,11 @@
 <script setup>
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import {Head, Link, useForm} from "@inertiajs/vue3";
-import {ref, watch} from "vue";
-import InputError from "@/Components/InputError.vue";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue"
+import {Head, Link, useForm} from "@inertiajs/vue3"
+import {ref, watch} from "vue"
+import InputError from "@/Components/InputError.vue"
 
 defineProps({
-    classes: {
-        type: Object,
-    }
+    classes: Object,
 });
 
 let sections = ref({});
